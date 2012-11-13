@@ -17,19 +17,13 @@
 
 #pragma mark - Swizzling
 
-#if TARGET_OS_IPHONE
-	#define VIEW_SWIZZLED_intrinsicContentSize PWSwizzled_View_intrinsicContentSize
-#else
-	#define VIEW_SWIZZLED_intrinsicContentSize PWSwizzled_intrinsicContentSize
-#endif
-
 + (void)load
 {
     [self jr_swizzleMethod:@selector(setHidden:)
                 withMethod:@selector(PWSwizzled_setHidden:)];
 
     [self jr_swizzleMethod:@selector(intrinsicContentSize)
-                withMethod:@selector(VIEW_SWIZZLED_intrinsicContentSize)];
+                withMethod:@selector(PWSwizzled_intrinsicContentSize)];
 }
 
 #pragma mark - Hiding Master
@@ -103,7 +97,7 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
 
 #pragma mark - Instrinsic content size
 
-- (PW_SIZE)VIEW_SWIZZLED_intrinsicContentSize
+- (PW_SIZE)PWSwizzled_intrinsicContentSize
 {
     return [self PWIntrinsicContentSizeIsBase:YES];
 }
@@ -132,7 +126,7 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
 	#else
 		#define NO_METRIC NSViewNoInstrinsicMetric
 	#endif
-    PW_SIZE size = self.VIEW_SWIZZLED_intrinsicContentSize; // no recursion since methods are swizzled
+    PW_SIZE size = self.PWSwizzled_intrinsicContentSize; // no recursion since methods are swizzled
     if(autocollapseWidth && (isBase || size.width != NO_METRIC))
         size.width = 0.0;
     if(autocollapseHeight && (isBase || size.height != NO_METRIC))
@@ -182,11 +176,15 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
  * TODO: Add any controls here that you want to use with this feature:
  */
 #if TARGET_OS_IPHONE
-	SWIZZLE_CONTROL(UIButton)
+/* Apparently, iOS doesn't need this done for controls because they seem
+ * to share their implementation with their super class (UIView).
+ * If we'd swizzle them here anyway, we'd run into endless recursions.
 	SWIZZLE_CONTROL(UILabel)
+	SWIZZLE_CONTROL(UIButton)
 	SWIZZLE_CONTROL(UISwitch)
 	SWIZZLE_CONTROL(UITextField)
 	SWIZZLE_CONTROL(UITextView)
+*/
 #else
 	SWIZZLE_CONTROL(NSButton)
 	SWIZZLE_CONTROL(NSTextField)
