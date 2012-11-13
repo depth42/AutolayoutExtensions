@@ -6,8 +6,17 @@
 
 #import "NSView-PWExtensions.h"
 #import "NSLayoutConstraint-PWExtensions.h"
-#import "NSObject-PWExtensions.h"
+#import "JRSwizzle.h"
 #import <objc/runtime.h>
+
+// A helper object for holding weak references
+// See http://stackoverflow.com/a/13351665/43615
+@interface WeakObjectHolder : NSObject
+  @property (nonatomic, weak) id weakRef;
+@end
+@implementation WeakObjectHolder
+@end
+
 
 @interface NSView (PWExtensionsPrivate)
 - (NSSize)PWIntrinsicContentSizeIsBase:(BOOL)isBase;        // Needed for Xcode versions prior to 4.6 DP1
@@ -20,11 +29,11 @@
 
 + (void)load
 {
-    [self exchangeMethod:@selector(setHidden:)
-              withMethod:@selector(PWSwizzled_setHidden:)];
+    [self jr_swizzleMethod:@selector(setHidden:)
+                withMethod:@selector(PWSwizzled_setHidden:)];
 
-    [self exchangeMethod:@selector(intrinsicContentSize)
-              withMethod:@selector(PWSwizzled_intrinsicContentSize)];
+    [self jr_swizzleMethod:@selector(intrinsicContentSize)
+                withMethod:@selector(PWSwizzled_intrinsicContentSize)];
 }
 
 #pragma mark -
@@ -55,7 +64,7 @@ static NSString* const PWHidingMasterViewKey = @"net.projectwizards.net.hidingMa
 
 static NSString* const PWHidingSlavesKey = @"net.projectwizards.net.hidingSlaves";
 
-- (NSHashTable*)PWHidingSlaves
+- (NSMutableSet*)PWHidingSlaves
 {
     return objc_getAssociatedObject(self, (__bridge const void*)PWHidingSlavesKey);
 }
@@ -63,13 +72,15 @@ static NSString* const PWHidingSlavesKey = @"net.projectwizards.net.hidingSlaves
 - (void)PWRegisterHidingSlave:(id <PWViewHidingSlave>)slave
 {
     NSParameterAssert(slave);
-    NSHashTable* slaves = objc_getAssociatedObject(self, (__bridge const void*)PWHidingSlavesKey);
+    NSMutableSet* slaves = objc_getAssociatedObject(self, (__bridge const void*)PWHidingSlavesKey);
     if(!slaves)
     {
-        slaves = [NSHashTable weakObjectsHashTable];
+        slaves = [NSMutableSet set];
         objc_setAssociatedObject(self, (__bridge const void*)PWHidingSlavesKey, slaves, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    [slaves addObject:slave];
+	WeakObjectHolder *helper = [WeakObjectHolder new];
+	helper.weakRef = slave;
+    [slaves addObject:helper];
 }
 
 - (void)PWUnregisterHidingSlave:(id <PWViewHidingSlave>)slave
@@ -134,8 +145,11 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
 - (void)PWSwizzled_setHidden:(BOOL)hidden
 {
     [self PWSwizzled_setHidden:hidden]; // no recursion since methods are swizzled
-    for(id <PWViewHidingSlave> iSlave in self.PWHidingSlaves)
-        iSlave.PWHidden = hidden;
+    for(WeakObjectHolder *iSlaveHolder in self.PWHidingSlaves)
+    {
+        id <PWViewHidingSlave> iSlave = iSlaveHolder.weakRef;
+        [iSlave setPWHidden:hidden];
+    }
 
     if(self.PWHidingMasterView != nil || self.PWHidingSlaves.count > 0 || self.PWAutoCollapse != nil)
         [self invalidateIntrinsicContentSize];
@@ -162,8 +176,8 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
 @implementation NSButton (PWAutoLayout)
 + (void)load
 {
-    [self exchangeMethod:@selector(intrinsicContentSize)
-              withMethod:@selector(PWSwizzled_intrinsicContentSize)];
+    [self jr_swizzleMethod:@selector(intrinsicContentSize)
+                withMethod:@selector(PWSwizzled_intrinsicContentSize)];
 }
 
 - (NSSize)PWSwizzled_intrinsicContentSize
@@ -177,8 +191,8 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
 @implementation NSTextField (PWAutoLayout)
 + (void)load
 {
-    [self exchangeMethod:@selector(intrinsicContentSize)
-              withMethod:@selector(PWSwizzled_intrinsicContentSize)];
+    [self jr_swizzleMethod:@selector(intrinsicContentSize)
+                withMethod:@selector(PWSwizzled_intrinsicContentSize)];
 }
 
 - (NSSize)PWSwizzled_intrinsicContentSize
@@ -192,8 +206,8 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
 @implementation NSMatrix (PWAutoLayout)
 + (void)load
 {
-    [self exchangeMethod:@selector(intrinsicContentSize)
-              withMethod:@selector(PWSwizzled_intrinsicContentSize)];
+    [self jr_swizzleMethod:@selector(intrinsicContentSize)
+                withMethod:@selector(PWSwizzled_intrinsicContentSize)];
 }
 
 - (NSSize)PWSwizzled_intrinsicContentSize
@@ -207,8 +221,8 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
 @implementation NSSlider (PWAutoLayout)
 + (void)load
 {
-    [self exchangeMethod:@selector(intrinsicContentSize)
-              withMethod:@selector(PWSwizzled_intrinsicContentSize)];
+    [self jr_swizzleMethod:@selector(intrinsicContentSize)
+                withMethod:@selector(PWSwizzled_intrinsicContentSize)];
 }
 
 - (NSSize)PWSwizzled_intrinsicContentSize
