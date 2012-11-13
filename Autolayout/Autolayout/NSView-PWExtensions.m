@@ -9,15 +9,6 @@
 #import "JRSwizzle.h"
 #import <objc/runtime.h>
 
-// A helper object for holding weak references
-// See http://stackoverflow.com/a/13351665/43615
-@interface WeakObjectHolder : NSObject
-  @property (nonatomic, weak) id weakRef;
-@end
-@implementation WeakObjectHolder
-@end
-
-
 @interface NSView (PWExtensionsPrivate)
 - (NSSize)PWIntrinsicContentSizeIsBase:(BOOL)isBase;        // Needed for Xcode versions prior to 4.6 DP1
 @end
@@ -64,7 +55,7 @@ static NSString* const PWHidingMasterViewKey = @"net.projectwizards.net.hidingMa
 
 static NSString* const PWHidingSlavesKey = @"net.projectwizards.net.hidingSlaves";
 
-- (NSMutableSet*)PWHidingSlaves
+- (NSHashTable*)PWHidingSlaves
 {
     return objc_getAssociatedObject(self, (__bridge const void*)PWHidingSlavesKey);
 }
@@ -72,15 +63,19 @@ static NSString* const PWHidingSlavesKey = @"net.projectwizards.net.hidingSlaves
 - (void)PWRegisterHidingSlave:(id <PWViewHidingSlave>)slave
 {
     NSParameterAssert(slave);
-    NSMutableSet* slaves = objc_getAssociatedObject(self, (__bridge const void*)PWHidingSlavesKey);
+    NSHashTable* slaves = objc_getAssociatedObject(self, (__bridge const void*)PWHidingSlavesKey);
     if(!slaves)
     {
-        slaves = [NSMutableSet set];
+		#if (__MAC_OS_X_VERSION_MIN_REQUIRED >= __MAC_10_8 || __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0)
+			// the modern way
+			slaves = [NSHashTable weakObjectsHashTable];
+		#else
+			// deprecated in 10.8
+			slaves = [NSHashTable hashTableWithWeakObjects];
+		#endif
         objc_setAssociatedObject(self, (__bridge const void*)PWHidingSlavesKey, slaves, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-	WeakObjectHolder *helper = [WeakObjectHolder new];
-	helper.weakRef = slave;
-    [slaves addObject:helper];
+    [slaves addObject:slave];
 }
 
 - (void)PWUnregisterHidingSlave:(id <PWViewHidingSlave>)slave
@@ -145,11 +140,8 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
 - (void)PWSwizzled_setHidden:(BOOL)hidden
 {
     [self PWSwizzled_setHidden:hidden]; // no recursion since methods are swizzled
-    for(WeakObjectHolder *iSlaveHolder in self.PWHidingSlaves)
-    {
-        id <PWViewHidingSlave> iSlave = iSlaveHolder.weakRef;
+    for(id <PWViewHidingSlave> iSlave in self.PWHidingSlaves)
         [iSlave setPWHidden:hidden];
-    }
 
     if(self.PWHidingMasterView != nil || self.PWHidingSlaves.count > 0 || self.PWAutoCollapse != nil)
         [self invalidateIntrinsicContentSize];
