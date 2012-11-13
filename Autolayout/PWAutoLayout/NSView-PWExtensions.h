@@ -4,6 +4,16 @@
 //  Created by Frank Illenberger on 05.11.12.
 //
 
+#if TARGET_OS_IPHONE
+	#define PW_VIEW	UIView
+	#define PW_CTRL	UIControl
+	#define PW_SIZE	CGSize
+#else
+	#define PW_VIEW	NSView
+	#define PW_CTRL	NSControl
+	#define PW_SIZE	NSSize
+#endif
+
 @protocol PWViewHidingSlave <NSObject>
 
 // PWHidingMasterView is the publicly available outlet which can be used in IB
@@ -11,7 +21,7 @@
 // If a view gets hidden, all constraints and views whose PWHidingMasterView point
 // to the hidden view get hidden as well. (Hiding a constraint means nullifying its constant).
 // The same goes for unhiding.
-@property (nonatomic, readwrite, unsafe_unretained)  IBOutlet NSView* PWHidingMasterView;
+@property (nonatomic, readwrite, unsafe_unretained)  IBOutlet PW_VIEW* PWHidingMasterView;
 
 @property (nonatomic, readwrite, getter=isPWHidden) BOOL PWHidden;
 
@@ -19,7 +29,7 @@
 
 #pragma mark -
 
-@interface NSView (PWExtensions) <PWViewHidingSlave>
+@interface PW_VIEW (PWExtensions) <PWViewHidingSlave>
 
 // PWHidingSlaves are other views or layout constraints whose PWHidingMasterView
 // outlets point to the receiver.
