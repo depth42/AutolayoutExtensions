@@ -15,7 +15,7 @@
 		0187D74316483DF1000FEB56 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0187D74116483DF1000FEB56 /* MainMenu.xib */; };
 		0187D74B16483E30000FEB56 /* NSView-PWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0187D74A16483E30000FEB56 /* NSView-PWExtensions.m */; };
 		0187D74E16483E3A000FEB56 /* NSLayoutConstraint-PWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0187D74D16483E3A000FEB56 /* NSLayoutConstraint-PWExtensions.m */; };
-		0187D75116483E79000FEB56 /* NSObject-PWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0187D75016483E79000FEB56 /* NSObject-PWExtensions.m */; };
+		A454DC321652640B0063137D /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = A454DC311652640B0063137D /* JRSwizzle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,8 +36,8 @@
 		0187D74A16483E30000FEB56 /* NSView-PWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView-PWExtensions.m"; sourceTree = "<group>"; };
 		0187D74C16483E3A000FEB56 /* NSLayoutConstraint-PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint-PWExtensions.h"; sourceTree = "<group>"; };
 		0187D74D16483E3A000FEB56 /* NSLayoutConstraint-PWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint-PWExtensions.m"; sourceTree = "<group>"; };
-		0187D74F16483E79000FEB56 /* NSObject-PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject-PWExtensions.h"; sourceTree = "<group>"; };
-		0187D75016483E79000FEB56 /* NSObject-PWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject-PWExtensions.m"; sourceTree = "<group>"; };
+		A454DC301652640B0063137D /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
+		A454DC311652640B0063137D /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				0187D72F16483DF1000FEB56 /* Autolayout */,
+				A454DC2F1652640B0063137D /* JRSwizzle */,
 				0187D72816483DF1000FEB56 /* Frameworks */,
 				0187D72616483DF1000FEB56 /* Products */,
 			);
@@ -95,8 +96,6 @@
 				0187D73B16483DF1000FEB56 /* PWDocument.h */,
 				0187D73C16483DF1000FEB56 /* PWDocument.m */,
 				0187D73E16483DF1000FEB56 /* PWDocument.xib */,
-				0187D74F16483E79000FEB56 /* NSObject-PWExtensions.h */,
-				0187D75016483E79000FEB56 /* NSObject-PWExtensions.m */,
 				0187D74916483E30000FEB56 /* NSView-PWExtensions.h */,
 				0187D74A16483E30000FEB56 /* NSView-PWExtensions.m */,
 				0187D74C16483E3A000FEB56 /* NSLayoutConstraint-PWExtensions.h */,
@@ -115,6 +114,15 @@
 				0187D73716483DF1000FEB56 /* AutolayoutExtensions-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A454DC2F1652640B0063137D /* JRSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				A454DC301652640B0063137D /* JRSwizzle.h */,
+				A454DC311652640B0063137D /* JRSwizzle.m */,
+			);
+			path = JRSwizzle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,7 +194,7 @@
 				0187D73D16483DF1000FEB56 /* PWDocument.m in Sources */,
 				0187D74B16483E30000FEB56 /* NSView-PWExtensions.m in Sources */,
 				0187D74E16483E3A000FEB56 /* NSLayoutConstraint-PWExtensions.m in Sources */,
-				0187D75116483E79000FEB56 /* NSObject-PWExtensions.m in Sources */,
+				A454DC321652640B0063137D /* JRSwizzle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +284,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Autolayout/AutolayoutExtensions-Prefix.pch";
 				INFOPLIST_FILE = "Autolayout/AutolayoutExtensions-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = AutolayoutExtensions;
 				WRAPPER_EXTENSION = app;
 			};
@@ -288,6 +297,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Autolayout/AutolayoutExtensions-Prefix.pch";
 				INFOPLIST_FILE = "Autolayout/AutolayoutExtensions-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = AutolayoutExtensions;
 				WRAPPER_EXTENSION = app;
 			};
