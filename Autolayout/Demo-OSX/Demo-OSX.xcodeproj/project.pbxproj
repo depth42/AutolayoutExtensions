@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		0187D72A16483DF1000FEB56 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0187D72916483DF1000FEB56 /* Cocoa.framework */; };
 		0187D73D16483DF1000FEB56 /* PWDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0187D73C16483DF1000FEB56 /* PWDocument.m */; };
-		0187D74B16483E30000FEB56 /* NSView-PWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0187D74A16483E30000FEB56 /* NSView-PWExtensions.m */; };
-		0187D74E16483E3A000FEB56 /* NSLayoutConstraint-PWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0187D74D16483E3A000FEB56 /* NSLayoutConstraint-PWExtensions.m */; };
 		A416E9CC1652A2BA003AE9FD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A416E9CB1652A2BA003AE9FD /* main.m */; };
-		A454DC321652640B0063137D /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = A454DC311652640B0063137D /* JRSwizzle.m */; };
+		A4311C711652DF5D00683849 /* Find original here.webloc in Resources */ = {isa = PBXBuildFile; fileRef = A4311C661652DF5D00683849 /* Find original here.webloc */; };
+		A4311C721652DF5D00683849 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = A4311C681652DF5D00683849 /* JRSwizzle.m */; };
+		A4311C731652DF5D00683849 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = A4311C691652DF5D00683849 /* README.markdown */; };
+		A4311C741652DF5D00683849 /* NSLayoutConstraint-PWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A4311C6C1652DF5D00683849 /* NSLayoutConstraint-PWExtensions.m */; };
+		A4311C751652DF5D00683849 /* NSView-PWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A4311C6E1652DF5D00683849 /* NSView-PWExtensions.m */; };
 		A4D5AF801652CA3300FABD5D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4D5AF7A1652CA3300FABD5D /* InfoPlist.strings */; };
 		A4D5AF811652CA3300FABD5D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D5AF7C1652CA3300FABD5D /* MainMenu.xib */; };
 		A4D5AF821652CA3300FABD5D /* PWDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D5AF7E1652CA3300FABD5D /* PWDocument.xib */; };
@@ -28,13 +30,15 @@
 		0187D73716483DF1000FEB56 /* AutolayoutExtensions-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "AutolayoutExtensions-Prefix.pch"; path = "../Demo-OSX/AutolayoutExtensions-Prefix.pch"; sourceTree = "<group>"; };
 		0187D73B16483DF1000FEB56 /* PWDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PWDocument.h; sourceTree = "<group>"; };
 		0187D73C16483DF1000FEB56 /* PWDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PWDocument.m; sourceTree = "<group>"; };
-		0187D74916483E30000FEB56 /* NSView-PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView-PWExtensions.h"; sourceTree = "<group>"; };
-		0187D74A16483E30000FEB56 /* NSView-PWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView-PWExtensions.m"; sourceTree = "<group>"; };
-		0187D74C16483E3A000FEB56 /* NSLayoutConstraint-PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint-PWExtensions.h"; sourceTree = "<group>"; };
-		0187D74D16483E3A000FEB56 /* NSLayoutConstraint-PWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint-PWExtensions.m"; sourceTree = "<group>"; };
 		A416E9CB1652A2BA003AE9FD /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Demo-OSX/main.m"; sourceTree = SOURCE_ROOT; };
-		A454DC301652640B0063137D /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
-		A454DC311652640B0063137D /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
+		A4311C661652DF5D00683849 /* Find original here.webloc */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "Find original here.webloc"; sourceTree = "<group>"; };
+		A4311C671652DF5D00683849 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
+		A4311C681652DF5D00683849 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
+		A4311C691652DF5D00683849 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
+		A4311C6B1652DF5D00683849 /* NSLayoutConstraint-PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint-PWExtensions.h"; sourceTree = "<group>"; };
+		A4311C6C1652DF5D00683849 /* NSLayoutConstraint-PWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint-PWExtensions.m"; sourceTree = "<group>"; };
+		A4311C6D1652DF5D00683849 /* NSView-PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView-PWExtensions.h"; sourceTree = "<group>"; };
+		A4311C6E1652DF5D00683849 /* NSView-PWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView-PWExtensions.m"; sourceTree = "<group>"; };
 		A4D5AF7B1652CA3300FABD5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "Demo-OSX/en.lproj/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
 		A4D5AF7D1652CA3300FABD5D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "Demo-OSX/en.lproj/MainMenu.xib"; sourceTree = SOURCE_ROOT; };
 		A4D5AF7F1652CA3300FABD5D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "Demo-OSX/en.lproj/PWDocument.xib"; sourceTree = SOURCE_ROOT; };
@@ -56,8 +60,8 @@
 			isa = PBXGroup;
 			children = (
 				A416E9C51652A02E003AE9FD /* Demo-OSX */,
-				0187D72F16483DF1000FEB56 /* PWAutolayout */,
-				A454DC2F1652640B0063137D /* JRSwizzle */,
+				A4311C651652DF5D00683849 /* JRSwizzle */,
+				A4311C6A1652DF5D00683849 /* PWAutoLayout */,
 				0187D72816483DF1000FEB56 /* Frameworks */,
 				0187D72616483DF1000FEB56 /* Products */,
 			);
@@ -90,18 +94,6 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		0187D72F16483DF1000FEB56 /* PWAutolayout */ = {
-			isa = PBXGroup;
-			children = (
-				0187D74916483E30000FEB56 /* NSView-PWExtensions.h */,
-				0187D74A16483E30000FEB56 /* NSView-PWExtensions.m */,
-				0187D74C16483E3A000FEB56 /* NSLayoutConstraint-PWExtensions.h */,
-				0187D74D16483E3A000FEB56 /* NSLayoutConstraint-PWExtensions.m */,
-			);
-			name = PWAutolayout;
-			path = PWAutoLayout;
-			sourceTree = "<group>";
-		};
 		0187D73016483DF1000FEB56 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,13 +117,28 @@
 			path = "Demo-OSX";
 			sourceTree = "<group>";
 		};
-		A454DC2F1652640B0063137D /* JRSwizzle */ = {
+		A4311C651652DF5D00683849 /* JRSwizzle */ = {
 			isa = PBXGroup;
 			children = (
-				A454DC301652640B0063137D /* JRSwizzle.h */,
-				A454DC311652640B0063137D /* JRSwizzle.m */,
+				A4311C661652DF5D00683849 /* Find original here.webloc */,
+				A4311C671652DF5D00683849 /* JRSwizzle.h */,
+				A4311C681652DF5D00683849 /* JRSwizzle.m */,
+				A4311C691652DF5D00683849 /* README.markdown */,
 			);
-			path = JRSwizzle;
+			name = JRSwizzle;
+			path = ../JRSwizzle;
+			sourceTree = "<group>";
+		};
+		A4311C6A1652DF5D00683849 /* PWAutoLayout */ = {
+			isa = PBXGroup;
+			children = (
+				A4311C6B1652DF5D00683849 /* NSLayoutConstraint-PWExtensions.h */,
+				A4311C6C1652DF5D00683849 /* NSLayoutConstraint-PWExtensions.m */,
+				A4311C6D1652DF5D00683849 /* NSView-PWExtensions.h */,
+				A4311C6E1652DF5D00683849 /* NSView-PWExtensions.m */,
+			);
+			name = PWAutoLayout;
+			path = ../PWAutoLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +196,8 @@
 				A4D5AF801652CA3300FABD5D /* InfoPlist.strings in Resources */,
 				A4D5AF811652CA3300FABD5D /* MainMenu.xib in Resources */,
 				A4D5AF821652CA3300FABD5D /* PWDocument.xib in Resources */,
+				A4311C711652DF5D00683849 /* Find original here.webloc in Resources */,
+				A4311C731652DF5D00683849 /* README.markdown in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,10 +209,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0187D73D16483DF1000FEB56 /* PWDocument.m in Sources */,
-				0187D74B16483E30000FEB56 /* NSView-PWExtensions.m in Sources */,
-				0187D74E16483E3A000FEB56 /* NSLayoutConstraint-PWExtensions.m in Sources */,
-				A454DC321652640B0063137D /* JRSwizzle.m in Sources */,
 				A416E9CC1652A2BA003AE9FD /* main.m in Sources */,
+				A4311C721652DF5D00683849 /* JRSwizzle.m in Sources */,
+				A4311C741652DF5D00683849 /* NSLayoutConstraint-PWExtensions.m in Sources */,
+				A4311C751652DF5D00683849 /* NSView-PWExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
