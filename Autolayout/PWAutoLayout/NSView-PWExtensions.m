@@ -1,5 +1,5 @@
 //
-//  NSView-PWExtensions.h
+//  NSView-PWExtensions.m
 //
 //  Created by Frank Illenberger on 05.11.12.
 //
