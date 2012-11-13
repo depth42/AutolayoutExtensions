@@ -22,9 +22,9 @@ For finer control, I introduce the property "PWAutoCollapse" on NSView which can
 
 The code consists of the following categories:
 
-NSView-PWExtensions
-NSObject-PWExtensions
-NSLayoutConstraint-PWExtensions
+- NSView-PWExtensions
+- NSObject-PWExtensions
+- NSLayoutConstraint-PWExtensions
 
 It is embedded into a small demo application.
 It is implemented for the Mac platform but can easily be adjusted to work on iOS as well.
