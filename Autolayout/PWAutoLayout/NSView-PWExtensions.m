@@ -1,5 +1,5 @@
 //
-//  NSView-PWExtensions.h
+//  NSView-PWExtensions.m
 //
 //  Created by Frank Illenberger on 05.11.12.
 //
@@ -9,14 +9,13 @@
 #import "JRSwizzle.h"
 #import <objc/runtime.h>
 
-@interface NSView (PWExtensionsPrivate)
-- (NSSize)PWIntrinsicContentSizeIsBase:(BOOL)isBase;        // Needed for Xcode versions prior to 4.6 DP1
+@interface PW_VIEW (PWExtensionsPrivate)
+- (PW_SIZE)PWIntrinsicContentSizeIsBase:(BOOL)isBase;   // Needed for Xcode versions prior to 4.6 DP1
 @end
 
-@implementation NSView (PWExtensions)
+@implementation PW_VIEW (PWExtensions)
 
-#pragma mark -
-#pragma mark Swizzling
+#pragma mark - Swizzling
 
 + (void)load
 {
@@ -27,21 +26,20 @@
                 withMethod:@selector(PWSwizzled_intrinsicContentSize)];
 }
 
-#pragma mark -
-#pragma mark Hiding Master
+#pragma mark - Hiding Master
 
 static NSString* const PWHidingMasterViewKey = @"net.projectwizards.net.hidingMasterView";
 
-- (NSView*)PWHidingMasterView
+- (PW_VIEW*)PWHidingMasterView
 {
     return objc_getAssociatedObject(self, (__bridge const void*)PWHidingMasterViewKey);
 }
 
-- (void)setPWHidingMasterView:(NSView*)master
+- (void)setPWHidingMasterView:(PW_VIEW*)master
 {
     NSParameterAssert(master != self);
 
-    NSView* previousMaster = self.PWHidingMasterView;
+    PW_VIEW* previousMaster = self.PWHidingMasterView;
     if(master != previousMaster)
     {
         [previousMaster PWUnregisterHidingSlave:self];
@@ -50,8 +48,7 @@ static NSString* const PWHidingMasterViewKey = @"net.projectwizards.net.hidingMa
     }
 }
 
-#pragma mark -
-#pragma mark Hiding Slaves
+#pragma mark - Hiding Slaves
 
 static NSString* const PWHidingSlavesKey = @"net.projectwizards.net.hidingSlaves";
 
@@ -84,8 +81,7 @@ static NSString* const PWHidingSlavesKey = @"net.projectwizards.net.hidingSlaves
     [self.PWHidingSlaves removeObject:slave];
 }
 
-#pragma mark -
-#pragma mark Auto collapse
+#pragma mark - Auto collapse
 
 static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse";
 
@@ -99,15 +95,14 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
     objc_setAssociatedObject(self, (__bridge const void*)PWAutoCollapseKey, value, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-#pragma mark -
-#pragma mark Instrinsic content size
+#pragma mark - Instrinsic content size
 
-- (NSSize)PWSwizzled_intrinsicContentSize
+- (PW_SIZE)PWSwizzled_intrinsicContentSize
 {
     return [self PWIntrinsicContentSizeIsBase:YES];
 }
 
-- (NSSize)PWIntrinsicContentSizeIsBase:(BOOL)isBase
+- (PW_SIZE)PWIntrinsicContentSizeIsBase:(BOOL)isBase
 {
     BOOL autocollapseWidth = NO;
     BOOL autocollapseHeight = NO;
@@ -126,16 +121,20 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
         }
     }
 
-    NSSize size = self.PWSwizzled_intrinsicContentSize; // no recursion since methods are swizzled
-    if(autocollapseWidth && (isBase || size.width != NSViewNoInstrinsicMetric))
+	#if TARGET_OS_IPHONE
+		#define NO_METRIC UIViewNoIntrinsicMetric
+	#else
+		#define NO_METRIC NSViewNoInstrinsicMetric
+	#endif
+    PW_SIZE size = self.PWSwizzled_intrinsicContentSize; // no recursion since methods are swizzled
+    if(autocollapseWidth && (isBase || size.width != NO_METRIC))
         size.width = 0.0;
-    if(autocollapseHeight && (isBase || size.height != NSViewNoInstrinsicMetric))
+    if(autocollapseHeight && (isBase || size.height != NO_METRIC))
         size.height = 0.0;
     return size;
 }
 
-#pragma mark -
-#pragma mark Hiding
+#pragma mark - Hiding
 
 - (void)PWSwizzled_setHidden:(BOOL)hidden
 {
@@ -148,8 +147,7 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
 }
 
 
-#pragma mark -
-#pragma mark PWHidingSlave protocol
+#pragma mark - PWHidingSlave protocol
 
 - (BOOL)isPWHidden
 {
@@ -162,63 +160,34 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
 }
 @end
 
-#pragma mark -
-#pragma mark Swizzling intrinsic content size in AppKit controls
+#pragma mark - Swizzling intrinsic content size in AppKit controls
 
-@implementation NSButton (PWAutoLayout)
-+ (void)load
-{
-    [self jr_swizzleMethod:@selector(intrinsicContentSize)
-                withMethod:@selector(PWSwizzled_intrinsicContentSize)];
-}
+#define SWIZZLE_CONTROL(ControlName) \
+	@implementation ControlName (PWAutoLayout) \
+	+ (void)load { \
+		[self jr_swizzleMethod:@selector(intrinsicContentSize) withMethod:@selector(PWSwizzled_intrinsicContentSize)]; \
+	} \
+	- (PW_SIZE)PWSwizzled_intrinsicContentSize { \
+		return [self PWIntrinsicContentSizeIsBase:NO]; \
+	} \
+	@end
 
-- (NSSize)PWSwizzled_intrinsicContentSize
-{
-    return [self PWIntrinsicContentSizeIsBase:NO];
-}
-@end
-
-#pragma mark -
-
-@implementation NSTextField (PWAutoLayout)
-+ (void)load
-{
-    [self jr_swizzleMethod:@selector(intrinsicContentSize)
-                withMethod:@selector(PWSwizzled_intrinsicContentSize)];
-}
-
-- (NSSize)PWSwizzled_intrinsicContentSize
-{
-    return [self PWIntrinsicContentSizeIsBase:NO];
-}
-@end
-
-#pragma mark -
-
-@implementation NSMatrix (PWAutoLayout)
-+ (void)load
-{
-    [self jr_swizzleMethod:@selector(intrinsicContentSize)
-                withMethod:@selector(PWSwizzled_intrinsicContentSize)];
-}
-
-- (NSSize)PWSwizzled_intrinsicContentSize
-{
-    return [self PWIntrinsicContentSizeIsBase:NO];
-}
-@end
-
-#pragma mark -
-
-@implementation NSSlider (PWAutoLayout)
-+ (void)load
-{
-    [self jr_swizzleMethod:@selector(intrinsicContentSize)
-                withMethod:@selector(PWSwizzled_intrinsicContentSize)];
-}
-
-- (NSSize)PWSwizzled_intrinsicContentSize
-{
-    return [self PWIntrinsicContentSizeIsBase:NO];
-}
-@end
+/*
+ * TODO: Add any controls here that you want to use with this feature:
+ */
+#if TARGET_OS_IPHONE
+/* Apparently, iOS doesn't need this done for controls because they seem
+ * to share their implementation with their super class (UIView).
+ * If we'd swizzle them here anyway, we'd run into endless recursions.
+	SWIZZLE_CONTROL(UILabel)
+	SWIZZLE_CONTROL(UIButton)
+	SWIZZLE_CONTROL(UISwitch)
+	SWIZZLE_CONTROL(UITextField)
+	SWIZZLE_CONTROL(UITextView)
+*/
+#else
+	SWIZZLE_CONTROL(NSButton)
+	SWIZZLE_CONTROL(NSTextField)
+	SWIZZLE_CONTROL(NSMatrix)
+	SWIZZLE_CONTROL(NSSlider)
+#endif

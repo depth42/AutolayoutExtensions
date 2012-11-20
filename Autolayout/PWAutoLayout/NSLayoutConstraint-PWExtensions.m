@@ -9,19 +9,18 @@
 
 @implementation NSLayoutConstraint (PWExtensions)
 
-#pragma mark -
-#pragma mark Hiding Master View
+#pragma mark - Hiding Master View
 
 static NSString* const PWHidingMasterViewKey = @"net.projectwizards.net.hidingMasterView";
 
-- (NSView*)PWHidingMasterView
+- (PW_VIEW*)PWHidingMasterView
 {
     return objc_getAssociatedObject(self, (__bridge const void*)PWHidingMasterViewKey);
 }
 
-- (void)setPWHidingMasterView:(NSView*)master
+- (void)setPWHidingMasterView:(PW_VIEW*)master
 {
-    NSView* previousMaster = self.PWHidingMasterView;
+    PW_VIEW* previousMaster = self.PWHidingMasterView;
     if(master != previousMaster)
     {
         [previousMaster PWUnregisterHidingSlave:self];
@@ -32,8 +31,7 @@ static NSString* const PWHidingMasterViewKey = @"net.projectwizards.net.hidingMa
     }
 }
 
-#pragma mark -
-#pragma mark Original Constant
+#pragma mark - Original Constant
 
 static NSString* const PWOriginalConstantKey = @"net.projectwizards.net.PWOriginalConstant";
 
@@ -47,8 +45,7 @@ static NSString* const PWOriginalConstantKey = @"net.projectwizards.net.PWOrigin
     objc_setAssociatedObject(self, (__bridge const void*)PWOriginalConstantKey, constant, OBJC_ASSOCIATION_COPY);
 }
 
-#pragma mark -
-#pragma mark PWHidingSlave protocol
+#pragma mark - PWHidingSlave protocol
 
 - (void)setPWHidden:(BOOL)hidden
 {
