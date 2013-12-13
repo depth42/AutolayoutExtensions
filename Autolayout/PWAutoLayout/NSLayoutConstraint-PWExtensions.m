@@ -56,12 +56,16 @@ static NSString* const PWOriginalConstantKey = @"net.projectwizards.net.PWOrigin
             // Remember constant for later unhiding of constraint
             self.PWOriginalConstant = @(self.constant);
             self.constant = 0.0;
+
+            self.priority--;
         }
         else
         {
             NSAssert(self.PWOriginalConstant, nil);
             self.constant = self.PWOriginalConstant.doubleValue;
             self.PWOriginalConstant = nil;
+
+            self.priority++;
         }
     }
 }
