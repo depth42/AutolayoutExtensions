@@ -20,10 +20,10 @@
 + (void)load
 {
     [self jr_swizzleMethod:@selector(setHidden:)
-                withMethod:@selector(PWSwizzled_setHidden:)];
+                withMethod:@selector(PWSwizzled_setHidden:) error:nil];
 
     [self jr_swizzleMethod:@selector(intrinsicContentSize)
-                withMethod:@selector(PWSwizzled_intrinsicContentSize)];
+                withMethod:@selector(PWSwizzled_intrinsicContentSize) error:nil];
 }
 
 #pragma mark - Hiding Master
