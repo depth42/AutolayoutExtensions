@@ -165,7 +165,7 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
 #define SWIZZLE_CONTROL(ControlName) \
 	@implementation ControlName (PWAutoLayout) \
 	+ (void)load { \
-		[self jr_swizzleMethod:@selector(intrinsicContentSize) withMethod:@selector(PWSwizzled_intrinsicContentSize)]; \
+		[self jr_swizzleMethod:@selector(intrinsicContentSize) withMethod:@selector(PWSwizzled_intrinsicContentSize) error:nil]; \
 	} \
 	- (PW_SIZE)PWSwizzled_intrinsicContentSize { \
 		return [self PWIntrinsicContentSizeIsBase:NO]; \
