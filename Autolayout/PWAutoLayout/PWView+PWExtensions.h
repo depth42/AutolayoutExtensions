@@ -5,13 +5,17 @@
 //
 
 #if TARGET_OS_IPHONE
-	#define PW_VIEW	UIView
-	#define PW_CTRL	UIControl
-	#define PW_SIZE	CGSize
+
+#define PWView UIView
+#define PWControl UIControl
+#define PWSize CGSize
+
 #else
-	#define PW_VIEW	NSView
-	#define PW_CTRL	NSControl
-	#define PW_SIZE	NSSize
+
+#define PWView NSView
+#define PWControl NSControl
+#define PWSize NSSize
+
 #endif
 
 @protocol PWViewHidingSlave <NSObject>
@@ -21,19 +25,20 @@
 // If a view gets hidden, all constraints and views whose PWHidingMasterView point
 // to the hidden view get hidden as well. (Hiding a constraint means nullifying its constant).
 // The same goes for unhiding.
-@property (nonatomic, readwrite, unsafe_unretained)  IBOutlet PW_VIEW* PWHidingMasterView;
+@property (nonatomic, readwrite, unsafe_unretained)  IBOutlet PWView *PWHidingMasterView;
 
 @property (nonatomic, readwrite, getter=isPWHidden) BOOL PWHidden;
 
 @end
 
+
 #pragma mark -
 
-@interface PW_VIEW (PWExtensions) <PWViewHidingSlave>
+@interface PWView (PWExtensions) <PWViewHidingSlave>
 
 // PWHidingSlaves are other views or layout constraints whose PWHidingMasterView
 // outlets point to the receiver.
-@property (nonatomic, readonly, copy)  NSHashTable* PWHidingSlaves; // id <PWViewHidingSlave>
+@property (nonatomic, readonly, copy)  NSHashTable *PWHidingSlaves; // id <PWViewHidingSlave>
 
 - (void)PWRegisterHidingSlave:(id <PWViewHidingSlave>)slave;
 - (void)PWUnregisterHidingSlave:(id <PWViewHidingSlave>)slave;
@@ -44,6 +49,6 @@
 // but collapse vertically.
 // Can be set explicity, also via user-defined runtime attributes in IB.
 // If nil and the receiver is a hiding master or slave, the collapse behavior defaults to @"width,height"
-@property (nonatomic, readwrite, copy) NSString* PWAutoCollapse;
+@property (nonatomic, readwrite, copy) NSString *PWAutoCollapse;
 
 @end

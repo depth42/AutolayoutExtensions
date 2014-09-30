@@ -4,16 +4,16 @@
 //  Created by Frank Illenberger on 05.11.12.
 //
 
-#import "NSView-PWExtensions.h"
-#import "NSLayoutConstraint-PWExtensions.h"
+#import "NSView+PWExtensions.h"
+#import "NSLayoutConstraint+PWExtensions.h"
 #import "JRSwizzle.h"
 #import <objc/runtime.h>
 
-@interface PW_VIEW (PWExtensionsPrivate)
-- (PW_SIZE)PWIntrinsicContentSizeIsBase:(BOOL)isBase;   // Needed for Xcode versions prior to 4.6 DP1
+@interface PWView (PWExtensionsPrivate)
+- (PWSize)PWIntrinsicContentSizeIsBase:(BOOL)isBase;   // Needed for Xcode versions prior to 4.6 DP1
 @end
 
-@implementation PW_VIEW (PWExtensions)
+@implementation PWView (PWExtensions)
 
 #pragma mark - Swizzling
 
@@ -30,17 +30,17 @@
 
 static NSString* const PWHidingMasterViewKey = @"net.projectwizards.net.hidingMasterView";
 
-- (PW_VIEW*)PWHidingMasterView
+- (PWView*)PWHidingMasterView
 {
     return objc_getAssociatedObject(self, (__bridge const void*)PWHidingMasterViewKey);
 }
 
-- (void)setPWHidingMasterView:(PW_VIEW*)master
+- (void)setPWHidingMasterView:(PWView*)master
 {
     NSParameterAssert(master != self);
 
-    PW_VIEW* previousMaster = self.PWHidingMasterView;
-    if(master != previousMaster)
+    PWView* previousMaster = self.PWHidingMasterView;
+    if (master != previousMaster)
     {
         [previousMaster PWUnregisterHidingSlave:self];
         objc_setAssociatedObject(self, (__bridge const void*)PWHidingMasterViewKey, master, OBJC_ASSOCIATION_ASSIGN);
@@ -50,9 +50,9 @@ static NSString* const PWHidingMasterViewKey = @"net.projectwizards.net.hidingMa
 
 #pragma mark - Hiding Slaves
 
-static NSString* const PWHidingSlavesKey = @"net.projectwizards.net.hidingSlaves";
+static NSString *const PWHidingSlavesKey = @"net.projectwizards.net.hidingSlaves";
 
-- (NSHashTable*)PWHidingSlaves
+- (NSHashTable *)PWHidingSlaves
 {
     return objc_getAssociatedObject(self, (__bridge const void*)PWHidingSlavesKey);
 }
@@ -60,8 +60,8 @@ static NSString* const PWHidingSlavesKey = @"net.projectwizards.net.hidingSlaves
 - (void)PWRegisterHidingSlave:(id <PWViewHidingSlave>)slave
 {
     NSParameterAssert(slave);
-    NSHashTable* slaves = objc_getAssociatedObject(self, (__bridge const void*)PWHidingSlavesKey);
-    if(!slaves)
+    NSHashTable *slaves = objc_getAssociatedObject(self, (__bridge const void*)PWHidingSlavesKey);
+    if (!slaves)
     {
 		#if (__MAC_OS_X_VERSION_MIN_REQUIRED >= __MAC_10_8 || __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0)
 			// the modern way
@@ -83,9 +83,9 @@ static NSString* const PWHidingSlavesKey = @"net.projectwizards.net.hidingSlaves
 
 #pragma mark - Auto collapse
 
-static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse";
+static NSString *const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse";
 
-- (NSString*)PWAutoCollapse
+- (NSString *)PWAutoCollapse
 {
     return objc_getAssociatedObject(self, (__bridge const void*)PWAutoCollapseKey);
 }
@@ -97,24 +97,24 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
 
 #pragma mark - Instrinsic content size
 
-- (PW_SIZE)PWSwizzled_intrinsicContentSize
+- (PWSize)PWSwizzled_intrinsicContentSize
 {
     return [self PWIntrinsicContentSizeIsBase:YES];
 }
 
-- (PW_SIZE)PWIntrinsicContentSizeIsBase:(BOOL)isBase
+- (PWSize)PWIntrinsicContentSizeIsBase:(BOOL)isBase
 {
     BOOL autocollapseWidth = NO;
     BOOL autocollapseHeight = NO;
-    NSString* value = self.PWAutoCollapse;
-    if(self.isHidden)
+    NSString *value = self.PWAutoCollapse;
+    if (self.isHidden)
     {
-        if(value)
+        if (value)
         {
             autocollapseWidth  = ([value rangeOfString:@"width"].location != NSNotFound);
             autocollapseHeight = ([value rangeOfString:@"height"].location != NSNotFound);
         }
-        else if(self.PWHidingMasterView != nil || self.PWHidingSlaves.count > 0)
+        else if (self.PWHidingMasterView != nil || self.PWHidingSlaves.count > 0)
         {
             autocollapseWidth = YES;
             autocollapseHeight = YES;
@@ -122,15 +122,19 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
     }
 
 	#if TARGET_OS_IPHONE
-		#define NO_METRIC UIViewNoIntrinsicMetric
+		#define PWViewNoIntrinsicMetric UIViewNoIntrinsicMetric
 	#else
-		#define NO_METRIC NSViewNoInstrinsicMetric
+		#define PWViewNoIntrinsicMetric NSViewNoInstrinsicMetric
 	#endif
-    PW_SIZE size = self.PWSwizzled_intrinsicContentSize; // no recursion since methods are swizzled
-    if(autocollapseWidth && (isBase || size.width != NO_METRIC))
+    PWSize size = self.PWSwizzled_intrinsicContentSize; // no recursion since methods are swizzled
+    if (autocollapseWidth && (isBase || size.width != PWViewNoIntrinsicMetric))
+    {
         size.width = 0.0;
-    if(autocollapseHeight && (isBase || size.height != NO_METRIC))
+    }
+    if (autocollapseHeight && (isBase || size.height != PWViewNoIntrinsicMetric))
+    {
         size.height = 0.0;
+    }
     return size;
 }
 
@@ -139,11 +143,14 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
 - (void)PWSwizzled_setHidden:(BOOL)hidden
 {
     [self PWSwizzled_setHidden:hidden]; // no recursion since methods are swizzled
-    for(id <PWViewHidingSlave> iSlave in self.PWHidingSlaves)
+    for (id <PWViewHidingSlave> iSlave in self.PWHidingSlaves)
+    {
         [iSlave setPWHidden:hidden];
-
-    if(self.PWHidingMasterView != nil || self.PWHidingSlaves.count > 0 || self.PWAutoCollapse != nil)
+    }
+    if (self.PWHidingMasterView != nil || self.PWHidingSlaves.count > 0 || self.PWAutoCollapse != nil)
+    {
         [self invalidateIntrinsicContentSize];
+    }
 }
 
 
@@ -167,7 +174,7 @@ static NSString* const PWAutoCollapseKey = @"net.projectwizards.net.autoCollapse
 	+ (void)load { \
 		[self jr_swizzleMethod:@selector(intrinsicContentSize) withMethod:@selector(PWSwizzled_intrinsicContentSize) error:nil]; \
 	} \
-	- (PW_SIZE)PWSwizzled_intrinsicContentSize { \
+	- (PWSize)PWSwizzled_intrinsicContentSize { \
 		return [self PWIntrinsicContentSizeIsBase:NO]; \
 	} \
 	@end

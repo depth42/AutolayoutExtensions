@@ -4,38 +4,37 @@
 //  Created by Frank Illenberger on 05.11.12.
 //
 
-#import "NSLayoutConstraint-PWExtensions.h"
+#import "NSLayoutConstraint+PWExtensions.h"
 #import <objc/runtime.h>
+
 
 @implementation NSLayoutConstraint (PWExtensions)
 
 #pragma mark - Hiding Master View
 
-static NSString* const PWHidingMasterViewKey = @"net.projectwizards.net.hidingMasterView";
+static NSString *const PWHidingMasterViewKey = @"net.projectwizards.net.hidingMasterView";
 
-- (PW_VIEW*)PWHidingMasterView
+- (PWView *)PWHidingMasterView
 {
     return objc_getAssociatedObject(self, (__bridge const void*)PWHidingMasterViewKey);
 }
 
-- (void)setPWHidingMasterView:(PW_VIEW*)master
+- (void)setPWHidingMasterView:(PWView*)master
 {
-    PW_VIEW* previousMaster = self.PWHidingMasterView;
-    if(master != previousMaster)
+    PWView* previousMaster = self.PWHidingMasterView;
+    if (master != previousMaster)
     {
         [previousMaster PWUnregisterHidingSlave:self];
-        
         objc_setAssociatedObject(self, (__bridge const void*)PWHidingMasterViewKey, master, OBJC_ASSOCIATION_ASSIGN);
-        
         [master PWRegisterHidingSlave:self];
     }
 }
 
 #pragma mark - Original Constant
 
-static NSString* const PWOriginalConstantKey = @"net.projectwizards.net.PWOriginalConstant";
+static NSString *const PWOriginalConstantKey = @"net.projectwizards.net.PWOriginalConstant";
 
-- (NSNumber*)PWOriginalConstant
+- (NSNumber *)PWOriginalConstant
 {
     return objc_getAssociatedObject(self, (__bridge const void*)PWOriginalConstantKey);
 }
@@ -49,9 +48,9 @@ static NSString* const PWOriginalConstantKey = @"net.projectwizards.net.PWOrigin
 
 - (void)setPWHidden:(BOOL)hidden
 {
-    if(hidden != self.isPWHidden)
+    if (hidden != self.isPWHidden)
     {
-        if(hidden)
+        if (hidden)
         {
             // Remember constant for later unhiding of constraint
             self.PWOriginalConstant = @(self.constant);
