@@ -8,7 +8,7 @@
 
 #import "PWView+PWExtensions.h"
 
-@interface NSView (PWExtensions) <PWViewHidingSlave>
+@interface NSView (PWExtensionsOSX) <PWViewHidingSlave>
 
 @property (nonatomic, readwrite, unsafe_unretained)  IBOutlet PWView *PWHidingMasterView;
 

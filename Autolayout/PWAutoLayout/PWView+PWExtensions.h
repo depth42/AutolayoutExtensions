@@ -6,11 +6,15 @@
 
 #if TARGET_OS_IPHONE
 
+#import <UIKit/UIKit.h>
+
 #define PWView UIView
 #define PWControl UIControl
 #define PWSize CGSize
 
 #else
+
+#import <Cocoa/Cocoa.h>
 
 #define PWView NSView
 #define PWControl NSControl
