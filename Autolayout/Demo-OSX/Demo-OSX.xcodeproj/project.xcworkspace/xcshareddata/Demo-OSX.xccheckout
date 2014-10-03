@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5D54967E-28A1-432A-B655-8CD69C2C7061</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Demo-OSX</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1E0E96F4F495F4F7B99EB08717B824BE724AAAAB</key>
+		<string>github.com:obviousengineering/AutolayoutExtensions.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Autolayout/Demo-OSX/Demo-OSX.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1E0E96F4F495F4F7B99EB08717B824BE724AAAAB</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:obviousengineering/AutolayoutExtensions.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1E0E96F4F495F4F7B99EB08717B824BE724AAAAB</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1E0E96F4F495F4F7B99EB08717B824BE724AAAAB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>AutoLayoutExtensions</string>
+		</dict>
+	</array>
+</dict>
+</plist>

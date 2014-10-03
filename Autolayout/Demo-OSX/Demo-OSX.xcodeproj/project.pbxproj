@@ -13,11 +13,11 @@
 		A4311C711652DF5D00683849 /* Find original here.webloc in Resources */ = {isa = PBXBuildFile; fileRef = A4311C661652DF5D00683849 /* Find original here.webloc */; };
 		A4311C721652DF5D00683849 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = A4311C681652DF5D00683849 /* JRSwizzle.m */; };
 		A4311C731652DF5D00683849 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = A4311C691652DF5D00683849 /* README.markdown */; };
-		A4311C741652DF5D00683849 /* NSLayoutConstraint-PWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A4311C6C1652DF5D00683849 /* NSLayoutConstraint-PWExtensions.m */; };
-		A4311C751652DF5D00683849 /* NSView-PWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A4311C6E1652DF5D00683849 /* NSView-PWExtensions.m */; };
 		A4D5AF801652CA3300FABD5D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4D5AF7A1652CA3300FABD5D /* InfoPlist.strings */; };
 		A4D5AF811652CA3300FABD5D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D5AF7C1652CA3300FABD5D /* MainMenu.xib */; };
 		A4D5AF821652CA3300FABD5D /* PWDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D5AF7E1652CA3300FABD5D /* PWDocument.xib */; };
+		BCE2B34419DEA63E00621691 /* NSLayoutConstraint+PWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE2B34119DEA63E00621691 /* NSLayoutConstraint+PWExtensions.m */; };
+		BCE2B34519DEA63E00621691 /* PWView+PWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE2B34219DEA63E00621691 /* PWView+PWExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,13 +35,15 @@
 		A4311C671652DF5D00683849 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
 		A4311C681652DF5D00683849 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		A4311C691652DF5D00683849 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
-		A4311C6B1652DF5D00683849 /* NSLayoutConstraint-PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint-PWExtensions.h"; sourceTree = "<group>"; };
-		A4311C6C1652DF5D00683849 /* NSLayoutConstraint-PWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint-PWExtensions.m"; sourceTree = "<group>"; };
-		A4311C6D1652DF5D00683849 /* NSView-PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView-PWExtensions.h"; sourceTree = "<group>"; };
-		A4311C6E1652DF5D00683849 /* NSView-PWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView-PWExtensions.m"; sourceTree = "<group>"; };
 		A4D5AF7B1652CA3300FABD5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "Demo-OSX/en.lproj/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
 		A4D5AF7D1652CA3300FABD5D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "Demo-OSX/en.lproj/MainMenu.xib"; sourceTree = SOURCE_ROOT; };
 		A4D5AF7F1652CA3300FABD5D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "Demo-OSX/en.lproj/PWDocument.xib"; sourceTree = SOURCE_ROOT; };
+		BCE2B33E19DEA63E00621691 /* NSView+PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+PWExtensions.h"; sourceTree = "<group>"; };
+		BCE2B33F19DEA63E00621691 /* PWView+PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PWView+PWExtensions.h"; sourceTree = "<group>"; };
+		BCE2B34019DEA63E00621691 /* NSLayoutConstraint+PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+PWExtensions.h"; sourceTree = "<group>"; };
+		BCE2B34119DEA63E00621691 /* NSLayoutConstraint+PWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+PWExtensions.m"; sourceTree = "<group>"; };
+		BCE2B34219DEA63E00621691 /* PWView+PWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PWView+PWExtensions.m"; sourceTree = "<group>"; };
+		BCE2B34319DEA63E00621691 /* UIView+PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PWExtensions.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,10 +134,12 @@
 		A4311C6A1652DF5D00683849 /* PWAutoLayout */ = {
 			isa = PBXGroup;
 			children = (
-				A4311C6B1652DF5D00683849 /* NSLayoutConstraint-PWExtensions.h */,
-				A4311C6C1652DF5D00683849 /* NSLayoutConstraint-PWExtensions.m */,
-				A4311C6D1652DF5D00683849 /* NSView-PWExtensions.h */,
-				A4311C6E1652DF5D00683849 /* NSView-PWExtensions.m */,
+				BCE2B33E19DEA63E00621691 /* NSView+PWExtensions.h */,
+				BCE2B33F19DEA63E00621691 /* PWView+PWExtensions.h */,
+				BCE2B34019DEA63E00621691 /* NSLayoutConstraint+PWExtensions.h */,
+				BCE2B34119DEA63E00621691 /* NSLayoutConstraint+PWExtensions.m */,
+				BCE2B34219DEA63E00621691 /* PWView+PWExtensions.m */,
+				BCE2B34319DEA63E00621691 /* UIView+PWExtensions.h */,
 			);
 			name = PWAutoLayout;
 			path = ../PWAutoLayout;
@@ -168,7 +172,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = PW;
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Frank Illenberger";
 			};
 			buildConfigurationList = 0187D71F16483DF1000FEB56 /* Build configuration list for PBXProject "Demo-OSX" */;
@@ -209,10 +213,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0187D73D16483DF1000FEB56 /* PWDocument.m in Sources */,
+				BCE2B34519DEA63E00621691 /* PWView+PWExtensions.m in Sources */,
 				A416E9CC1652A2BA003AE9FD /* main.m in Sources */,
+				BCE2B34419DEA63E00621691 /* NSLayoutConstraint+PWExtensions.m in Sources */,
 				A4311C721652DF5D00683849 /* JRSwizzle.m in Sources */,
-				A4311C741652DF5D00683849 /* NSLayoutConstraint-PWExtensions.m in Sources */,
-				A4311C751652DF5D00683849 /* NSView-PWExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,7 +254,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -278,7 +281,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

@@ -19,8 +19,8 @@
 		A4C2309B1652D6D100A3124B /* Find original here.webloc in Resources */ = {isa = PBXBuildFile; fileRef = A4C230901652D6D100A3124B /* Find original here.webloc */; };
 		A4C2309C1652D6D100A3124B /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C230921652D6D100A3124B /* JRSwizzle.m */; };
 		A4C2309D1652D6D100A3124B /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = A4C230931652D6D100A3124B /* README.markdown */; };
-		A4C2309E1652D6D100A3124B /* NSLayoutConstraint-PWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C230961652D6D100A3124B /* NSLayoutConstraint-PWExtensions.m */; };
-		A4C230A01652D6D100A3124B /* UIView-PWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C2309A1652D6D100A3124B /* UIView-PWExtensions.m */; };
+		BCE2B33C19DEA5AC00621691 /* NSLayoutConstraint+PWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE2B33919DEA5AC00621691 /* NSLayoutConstraint+PWExtensions.m */; };
+		BCE2B33D19DEA5AC00621691 /* PWView+PWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE2B33A19DEA5AC00621691 /* PWView+PWExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,12 +42,12 @@
 		A4C230911652D6D100A3124B /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
 		A4C230921652D6D100A3124B /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		A4C230931652D6D100A3124B /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
-		A4C230951652D6D100A3124B /* NSLayoutConstraint-PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint-PWExtensions.h"; sourceTree = "<group>"; };
-		A4C230961652D6D100A3124B /* NSLayoutConstraint-PWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint-PWExtensions.m"; sourceTree = "<group>"; };
-		A4C230971652D6D100A3124B /* NSView-PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView-PWExtensions.h"; sourceTree = "<group>"; };
-		A4C230981652D6D100A3124B /* NSView-PWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView-PWExtensions.m"; sourceTree = "<group>"; };
-		A4C230991652D6D100A3124B /* UIView-PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView-PWExtensions.h"; sourceTree = "<group>"; };
-		A4C2309A1652D6D100A3124B /* UIView-PWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView-PWExtensions.m"; sourceTree = "<group>"; };
+		BCE2B33619DEA5AC00621691 /* NSView+PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+PWExtensions.h"; sourceTree = "<group>"; };
+		BCE2B33719DEA5AC00621691 /* PWView+PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PWView+PWExtensions.h"; sourceTree = "<group>"; };
+		BCE2B33819DEA5AC00621691 /* NSLayoutConstraint+PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+PWExtensions.h"; sourceTree = "<group>"; };
+		BCE2B33919DEA5AC00621691 /* NSLayoutConstraint+PWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+PWExtensions.m"; sourceTree = "<group>"; };
+		BCE2B33A19DEA5AC00621691 /* PWView+PWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PWView+PWExtensions.m"; sourceTree = "<group>"; };
+		BCE2B33B19DEA5AC00621691 /* UIView+PWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PWExtensions.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,12 +131,12 @@
 		A4C230941652D6D100A3124B /* PWAutoLayout */ = {
 			isa = PBXGroup;
 			children = (
-				A4C230951652D6D100A3124B /* NSLayoutConstraint-PWExtensions.h */,
-				A4C230961652D6D100A3124B /* NSLayoutConstraint-PWExtensions.m */,
-				A4C230971652D6D100A3124B /* NSView-PWExtensions.h */,
-				A4C230981652D6D100A3124B /* NSView-PWExtensions.m */,
-				A4C230991652D6D100A3124B /* UIView-PWExtensions.h */,
-				A4C2309A1652D6D100A3124B /* UIView-PWExtensions.m */,
+				BCE2B33619DEA5AC00621691 /* NSView+PWExtensions.h */,
+				BCE2B33719DEA5AC00621691 /* PWView+PWExtensions.h */,
+				BCE2B33819DEA5AC00621691 /* NSLayoutConstraint+PWExtensions.h */,
+				BCE2B33919DEA5AC00621691 /* NSLayoutConstraint+PWExtensions.m */,
+				BCE2B33A19DEA5AC00621691 /* PWView+PWExtensions.m */,
+				BCE2B33B19DEA5AC00621691 /* UIView+PWExtensions.h */,
 			);
 			name = PWAutoLayout;
 			path = ../PWAutoLayout;
@@ -210,12 +210,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCE2B33D19DEA5AC00621691 /* PWView+PWExtensions.m in Sources */,
 				A4C230791652D6AE00A3124B /* main.m in Sources */,
 				A4C2307D1652D6AE00A3124B /* AppDelegate.m in Sources */,
 				A4C230861652D6AE00A3124B /* ViewController.m in Sources */,
 				A4C2309C1652D6D100A3124B /* JRSwizzle.m in Sources */,
-				A4C2309E1652D6D100A3124B /* NSLayoutConstraint-PWExtensions.m in Sources */,
-				A4C230A01652D6D100A3124B /* UIView-PWExtensions.m in Sources */,
+				BCE2B33C19DEA5AC00621691 /* NSLayoutConstraint+PWExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
